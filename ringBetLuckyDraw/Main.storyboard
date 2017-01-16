@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Qb8-dq-PB4">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="SZO-jx-75a">
+            <objects>
+                <navigationController id="Qb8-dq-PB4" customClass="HBNavigationController" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="r4K-Qp-fXJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="TVF-09-Oum" kind="relationship" relationship="rootViewController" id="wMK-sD-orY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f2C-sJ-j4l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-515" y="-1373"/>
+        </scene>
+        <!--轮盘抽奖-->
+        <scene sceneID="Oe4-ke-vXa">
+            <objects>
+                <viewController id="oUI-pU-VeG" customClass="HBLuckyDrawViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UD2-je-wE7"/>
+                        <viewControllerLayoutGuide type="bottom" id="g8m-cB-7O6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1XP-bW-IZA">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="轮盘抽奖" id="AlV-Ik-Pnv" userLabel="轮盘抽奖"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uLJ-fq-Vx9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-515" y="205"/>
+        </scene>
+        <!--Main View Controller-->
+        <scene sceneID="xfa-w1-6rU">
+            <objects>
+                <viewController id="TVF-09-Oum" customClass="HBMainViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gQb-o0-HA5"/>
+                        <viewControllerLayoutGuide type="bottom" id="eG6-r0-Kgb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3nj-Zs-d7u" userLabel="整体容器">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="76h-B9-tfp"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5uM-Wj-Bp4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-534" y="-649"/>
+        </scene>
+    </scenes>
+</document>

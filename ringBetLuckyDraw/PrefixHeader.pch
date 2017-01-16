@@ -1,0 +1,134 @@
+//
+//  PrefixHeader.pch
+//  ringBetLuckyDraw
+//
+//  Created by CoderJay on 2017/1/12.
+//  Copyright © 2017年 CoderJay. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#ifdef __OBJC__
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "UIView+Frame.h"
+#import "CALayer+Frame.h"
+
+#ifdef DEBUG // 调试阶段
+#define WJLog(FORMAT, ...) fprintf(stderr,"%s:%d\t%s\n",[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+
+#else // 发布阶段
+#define WJLog(...)
+#endif
+
+// define this constant if you want to use Masonry without the 'mas_' prefix
+// #define MAS_SHORTHAND
+
+// define this constant if you want to enable auto-boxing for default syntax
+#define MAS_SHORTHAND_GLOBALS
+
+#import "Masonry.h"
+
+#define frameString(...) NSStringFromCGRect(__VA_ARGS__)
+#define pointString(...) NSStringFromCGPoint(__VA_ARGS__)
+
+// RGB颜色
+#define WJColor(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)/1.0]
+
+// 随机色
+#define WJRandomColor WJColor(arc4random_uniform(256.0), arc4random_uniform(256.0),arc4random_uniform(256.0), 1)
+
+#define IS_IPHONE_5 [[UIScreen mainScreen] applicationFrame].size.height == 320
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+
+#define iOS9OrLater [[UIDevice currentDevice].systemVersion floatValue] >= 9.0
+#define iOS8OrLater [[UIDevice currentDevice].systemVersion floatValue] >= 8.0
+#define iOS7OrLater [[UIDevice currentDevice].systemVersion floatValue] >= 7.0
+
+#define Screen_Width [UIScreen mainScreen].bounds.size.width
+#define Screen_Height [UIScreen mainScreen].bounds.size.height
+
+#define BLOCK_EXECUTE(block, ...) if (block) { block(__VA_ARGS__); }
+
+#define isPortrait [UIScreen mainScreen].bounds.size.width < [UIScreen mainScreen].bounds.size.height
+
+#define dDeviceOrientation [[UIDevice currentDevice] orientation]
+#define isPortraitButUpsideDown  dDeviceOrientation == UIDeviceOrientationPortrait
+#define isLandscape UIDeviceOrientationIsLandscape(dDeviceOrientation)
+#define isFaceUp    dDeviceOrientation == UIDeviceOrientationFaceUp   ? YES : NO
+#define isFaceDown  dDeviceOrientation == UIDeviceOrientationFaceDown ? YES : NO
+
+#ifndef WJWeakObj
+#if DEBUG
+#if __has_feature(objc_arc)
+#define WJWeakObj(obj) autoreleasepool{} __weak __typeof__(obj) obj##Weak = obj;
+#else
+#define WJWeakObj(obj) autoreleasepool{} __block __typeof__(obj) obj##Block = obj;
+#endif
+#else
+#if __has_feature(objc_arc)
+#define WJWeakObj(obj) try{} @finally{} {} __weak __typeof__(obj) obj##Weak = obj;
+#else
+#define WJWeakObj(obj) try{} @finally{} {} __block __typeof__(obj) obj##Block = obj;
+#endif
+#endif
+#endif
+
+#ifndef WJStrongObj
+#if DEBUG
+#if __has_feature(objc_arc)
+#define WJStrongObj(obj) autoreleasepool{} __typeof__(obj) obj = obj##Weak;
+#else
+#define WJStrongObj(obj) autoreleasepool{} __typeof__(obj) obj = obj##Block;
+#endif
+#else
+#if __has_feature(objc_arc)
+#define WJStrongObj(obj) try{} @finally{} __typeof__(obj) obj = obj##Weak;
+#else
+#define WJStrongObj(obj) try{} @finally{} __typeof__(obj) obj = obj##Block;
+#endif
+#endif
+#endif
+
+// 字体名称
+#define GCFontName @"Hiragino Sans"
+
+// 下注输赢结果提示显示时间
+#define ShowBetResultTipTimeInterval 5
+// 动画时长
+#define GCCommonAnimatonDuration 0.2
+// 弧度转角度
+#define Angle2Degree(angle) ((angle) * (180.0 / M_PI))
+
+// 角度转弧度
+#define Degree2Angle(degree) ((degree) / 180.0 * M_PI)
+
+// 过期
+#define WJDeprecated(instead) NS_DEPRECATED(2_0, 2_0, 2_0, 2_0, instead)
+
+#define GCKeyWindow [UIApplication sharedApplication].keyWindow
+
+// 断言
+#define WJAssert(condition, desc) NSAssert(condition, desc)
+
+// NSUserDefaults
+#define USER_DEFAULTS [NSUserDefaults standardUserDefaults]
+
+#if !__has_feature(objc_instancetype)
+#define instancetype id
+#endif
+
+#if !__has_feature(objc_arc)
+//#error this application requires ARC
+#endif
+
+#endif
+
+
+#endif /* PrefixHeader_pch */
