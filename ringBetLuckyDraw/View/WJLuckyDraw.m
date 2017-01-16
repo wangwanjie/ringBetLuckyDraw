@@ -18,7 +18,12 @@ BOOL const isDebug = NO;
 
 NSString * const kHBLuckyDrawAnimationKey = @"kHBLuckyDrawAnimationKey";
 
+#ifdef NSFoundationVersionNumber_iOS_9_x_Max
+@interface WJLuckyDraw () <CAAnimationDelegate>
+#else
 @interface WJLuckyDraw ()
+#endif
+
 @property (nonatomic, strong) UIButton    *startOrPause;///< 开始或停止
 @property (nonatomic, strong) UIView      *fansContainer;///< 所有扇形容器
 @property (nonatomic, strong) UIImageView *zhiZhen;///< 指针

@@ -16,7 +16,7 @@
 @implementation GCStateCountItem
 - (instancetype)initWithLeftText:(NSString *)leftText rightText:(NSString *)rightText color:(UIColor *)color {
     if (self = [super init]) {
-        UIFont *infoFont = IS_IPHONE_5 ? [UIFont systemFontOfSize:16] : [UIFont systemFontOfSize:IS_IPAD ? 24 : 18];
+        UIFont *infoFont = IS_IPHONE5 ? [UIFont systemFontOfSize:16] : [UIFont systemFontOfSize:IS_IPAD ? 24 : 18];
         
         self.leftLabel = ({
             UILabel *leftLabel = [[UILabel alloc] init];

@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Qb8-dq-PB4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Qb8-dq-PB4">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -21,24 +25,6 @@
             </objects>
             <point key="canvasLocation" x="-515" y="-1373"/>
         </scene>
-        <!--轮盘抽奖-->
-        <scene sceneID="Oe4-ke-vXa">
-            <objects>
-                <viewController id="oUI-pU-VeG" customClass="HBLuckyDrawViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="UD2-je-wE7"/>
-                        <viewControllerLayoutGuide type="bottom" id="g8m-cB-7O6"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="1XP-bW-IZA">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="轮盘抽奖" id="AlV-Ik-Pnv" userLabel="轮盘抽奖"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uLJ-fq-Vx9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-515" y="205"/>
-        </scene>
         <!--Main View Controller-->
         <scene sceneID="xfa-w1-6rU">
             <objects>
@@ -48,7 +34,7 @@
                         <viewControllerLayoutGuide type="bottom" id="eG6-r0-Kgb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3nj-Zs-d7u" userLabel="整体容器">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
                     <navigationItem key="navigationItem" id="76h-B9-tfp"/>

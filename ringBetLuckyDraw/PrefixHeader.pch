@@ -43,7 +43,7 @@
 // 随机色
 #define WJRandomColor WJColor(arc4random_uniform(256.0), arc4random_uniform(256.0),arc4random_uniform(256.0), 1)
 
-#define IS_IPHONE_5 [[UIScreen mainScreen] applicationFrame].size.height == 320
+#define IS_IPHONE5 [UIScreen mainScreen].bounds.size.height == 320
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
 
@@ -96,13 +96,6 @@
 #endif
 #endif
 
-// 字体名称
-#define GCFontName @"Hiragino Sans"
-
-// 下注输赢结果提示显示时间
-#define ShowBetResultTipTimeInterval 5
-// 动画时长
-#define GCCommonAnimatonDuration 0.2
 // 弧度转角度
 #define Angle2Degree(angle) ((angle) * (180.0 / M_PI))
 
