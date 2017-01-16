@@ -175,7 +175,7 @@ NSString * const kHBLuckyDrawAnimationKey = @"kHBLuckyDrawAnimationKey";
 #pragma mark getters and setters
 - (void)setDataSource:(NSMutableArray *)dataSource {
     if (isDebug) {
-        [dataSource removeObjectsInRange:NSMakeRange(2, 30)];
+        [dataSource removeObjectsInRange:NSMakeRange(2, 25)];
     }
     _dataSource = dataSource;
     
