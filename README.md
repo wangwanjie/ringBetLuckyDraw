@@ -7,5 +7,8 @@
 
 #请运行在iPad模拟器或者真机上，未适配iPhone设备。
 
+# 计算参考图
+![img](https://github.com/wangwanjie/ringBetLuckyDraw/blob/master/snapshots/reference.png)
+
 # 效果演示
 ![img](https://github.com/wangwanjie/ringBetLuckyDraw/blob/master/snapshots/effect.gif)
