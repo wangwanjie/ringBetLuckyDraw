@@ -77,7 +77,6 @@ NSString * const kHBLuckyDrawAnimationKey = @"kHBLuckyDrawAnimationKey";
     
     CABasicAnimation *anim = [CABasicAnimation animation];
     anim.keyPath = @"transform.rotation";
-    
     double random = 0.0;
     if (isDebug) {
         random = arc4random() % 10 + (double)arc4random() / 0x100000000;
@@ -86,6 +85,9 @@ NSString * const kHBLuckyDrawAnimationKey = @"kHBLuckyDrawAnimationKey";
     else {
         random = arc4random() % 10 + 20 + (double)arc4random() / 0x100000000;
         anim.duration = 8;
+        random = arc4random() % 10 + (double)arc4random() / 0x100000000;
+        anim.duration = 0.1;
+
     }
     anim.toValue = @(random * M_PI);
     _rotatedAngle = random * M_PI;
@@ -133,13 +135,12 @@ NSString * const kHBLuckyDrawAnimationKey = @"kHBLuckyDrawAnimationKey";
                 WJLog(@"恭喜：%@", button.luckyDrawDataModel.descriptionStr);
                 @WJWeakObj(self);
                 FCAlertView *alert = [[FCAlertView alloc] init];
-                [alert showAlertWithTitle:@"提示" withSubtitle:[NSString stringWithFormat:@"恭喜您获得%@", button.luckyDrawDataModel.descriptionStr] withCustomImage:nil withDoneButtonTitle:nil andButtons:nil];
+                [alert showAlertWithTitle:@"开奖结果" withSubtitle:[NSString stringWithFormat:@"恭喜您获得%@", button.luckyDrawDataModel.descriptionStr] withCustomImage:nil withDoneButtonTitle:nil andButtons:nil];
                 alert.hideDoneButton = YES;
                 alert.bounceAnimations = YES;
                 alert.colorScheme = alert.flatOrange;
                 [alert makeAlertTypeSuccess];
                 alert.subTitleColor = [UIColor redColor];
-                [alert addButton:@"取消" withActionBlock:nil];
                 [alert addButton:@"确定" withActionBlock:^{
 
                     // 通知代理
@@ -244,7 +245,7 @@ NSString * const kHBLuckyDrawAnimationKey = @"kHBLuckyDrawAnimationKey";
         
         CAShapeLayer *shapeLayer = [CAShapeLayer layer];
         shapeLayer.lineWidth = 1;
-        shapeLayer.fillColor = i % 2 == 0 ? WJColor(255, 244, 215, 0.9).CGColor : [UIColor whiteColor].CGColor;
+        shapeLayer.fillColor = i % 2 == 0 ? WJColor(255, 244, 215, 1.0).CGColor : [UIColor whiteColor].CGColor;
         shapeLayer.path = bezierPath.CGPath;
         [_fansContainer.layer insertSublayer:shapeLayer atIndex:0];
     }
