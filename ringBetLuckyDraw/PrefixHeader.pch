@@ -96,6 +96,9 @@
 #endif
 #endif
 
+// 字体名称
+#define GCFontName @"Hiragino Sans"
+
 // 弧度转角度
 #define Angle2Degree(angle) ((angle) * (180.0 / M_PI))
 

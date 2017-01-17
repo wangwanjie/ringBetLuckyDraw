@@ -35,7 +35,7 @@ NSInteger const kFourthAwardCount = 15;
 #import "WJLuckyDrawDataModel.h"
 #import "MJExtension.h"
 #import "UIViewController+BackButtonHandler.h"
-#import "SIAlertView.h"
+#import "FCAlertView.h"
 
 @interface HBLuckyDrawViewController () <WJLuckyDrawDelegete, BackButtonHandlerProtocol>
 @property (nonatomic, strong) NSMutableArray *dataSource; ///< 数据源
@@ -122,38 +122,35 @@ NSInteger const kFourthAwardCount = 15;
 #pragma mark -
 #pragma mark BackButtonHandlerProtocol
 - (BOOL)navigationShouldPopOnBackButton {
-
-    SIAlertView *alertView1 = [[SIAlertView alloc] initWithTitle:@"提示" andMessage:@"返回上一界面将重置抽奖，请再次确认"];
-    [alertView1 addButtonWithTitle:@"取消" type:SIAlertViewButtonTypeCancel handler:nil];
-    [alertView1 addButtonWithTitle:@"确定" type:SIAlertViewButtonTypeDefault handler:^(SIAlertView *alertView) {
-        
-        SIAlertView *alertView2 = [[SIAlertView alloc] initWithTitle:@"提示" andMessage:@"所有已抽的奖将作废！！！请悉知"];
-        [alertView2 addButtonWithTitle:@"取消" type:SIAlertViewButtonTypeCancel handler:nil];
-        [alertView2 addButtonWithTitle:@"确定" type:SIAlertViewButtonTypeDefault handler:^(SIAlertView *alertView) {
-        
-            SIAlertView *alertView3 = [[SIAlertView alloc] initWithTitle:@"提示" andMessage:@"真的要返回吗？再次按下确定将返回上级界面并重置抽奖"];
-            [alertView3 addButtonWithTitle:@"取消" type:SIAlertViewButtonTypeCancel handler:nil];
-            [alertView3 addButtonWithTitle:@"确定" type:SIAlertViewButtonTypeDefault handler:^(SIAlertView *alertView) {
-                [self.navigationController popViewControllerAnimated:YES];
+    @WJWeakObj(self);
+    FCAlertView *alert1 = [[FCAlertView alloc] init];
+    [alert1 showAlertWithTitle:@"提示" withSubtitle:@"返回上一界面将重置抽奖，请再次确认" withCustomImage:nil withDoneButtonTitle:nil andButtons:nil];
+    alert1.hideDoneButton = YES;
+    alert1.bounceAnimations = YES;
+    alert1.colorScheme = alert1.flatOrange;
+    [alert1 makeAlertTypeCaution];
+    [alert1 addButton:@"取消" withActionBlock:nil];
+    [alert1 addButton:@"确定" withActionBlock:^{
+        FCAlertView *alert2 = [[FCAlertView alloc] init];
+        [alert2 showAlertWithTitle:@"提示" withSubtitle:@"所有已抽的奖将作废！！！请悉知" withCustomImage:nil withDoneButtonTitle:nil andButtons:nil];
+        alert2.hideDoneButton = YES;
+        alert2.bounceAnimations = YES;
+        alert2.colorScheme = alert2.flatOrange;
+        [alert2 makeAlertTypeCaution];
+        [alert2 addButton:@"取消" withActionBlock:nil];
+        [alert2 addButton:@"确定" withActionBlock:^{
+            FCAlertView *alert3 = [[FCAlertView alloc] init];
+            [alert3 showAlertWithTitle:@"提示" withSubtitle:@"真的要返回吗？再次按下确定将返回上级界面并重置抽奖" withCustomImage:nil withDoneButtonTitle:nil andButtons:nil];
+            alert3.hideDoneButton = YES;
+            alert3.bounceAnimations = YES;
+            alert3.colorScheme = alert3.flatOrange;
+            [alert3 makeAlertTypeCaution];
+            [alert3 addButton:@"取消" withActionBlock:nil];
+            [alert3 addButton:@"确定" withActionBlock:^{
+                [selfWeak.navigationController popViewControllerAnimated:YES];
             }];
-            alertView3.titleColor = [UIColor redColor];
-            alertView3.messageColor = [UIColor orangeColor];
-            alertView3.buttonColor = [UIColor blueColor];
-            alertView3.transitionStyle = SIAlertViewTransitionStyleBounce;
-            [alertView3 show];
         }];
-        alertView2.titleColor = [UIColor redColor];
-        alertView2.messageColor = [UIColor orangeColor];
-        alertView2.buttonColor = [UIColor blueColor];
-        alertView2.transitionStyle = SIAlertViewTransitionStyleBounce;
-        [alertView2 show];
-
     }];
-    alertView1.titleColor = [UIColor redColor];
-    alertView1.messageColor = [UIColor orangeColor];
-    alertView1.buttonColor = [UIColor blueColor];
-    alertView1.transitionStyle = SIAlertViewTransitionStyleBounce;
-    [alertView1 show];
     
     return NO;
 }

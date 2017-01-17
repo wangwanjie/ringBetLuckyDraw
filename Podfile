@@ -8,6 +8,5 @@ target 'ringBetLuckyDraw' do
   # Pods for ringBetLuckyDraw
   pod 'Masonry'
   pod 'MJExtension'
-  pod 'SIAlertView'
-
+  pod 'FCAlertView'
 end

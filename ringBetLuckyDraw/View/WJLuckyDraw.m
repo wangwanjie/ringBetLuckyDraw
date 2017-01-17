@@ -9,7 +9,7 @@
 #import "WJLuckyDraw.h"
 #import "WJLuckyDrawDataModel.h"
 #import "HBLuckyDrawButton.h"
-#import "SIAlertView.h"
+#import "FCAlertView.h"
 #include <math.h>
 #import "UIImage+Extension.h"
 #import "UIColor+Hex.h"
@@ -129,10 +129,18 @@ NSString * const kHBLuckyDrawAnimationKey = @"kHBLuckyDrawAnimationKey";
             WJLog(@"  %@**3/4圆位置：%f**转过：%f**取模当前起始位置：%f**取模当前结束位置：%f**当前起始位置：%f**当前结束位置：%f**本身起始位置：%f**本身结束位置：%f", button.luckyDrawDataModel.descriptionStr, Angle2Degree(lineThreeFourths), Angle2Degree(rotatedAngleFact), Angle2Degree(buttonStartAngle), Angle2Degree(buttonEndAngle), Angle2Degree(button.startAngle + rotatedAngleFact), Angle2Degree(button.endAngle + rotatedAngleFact), Angle2Degree(button.startAngle), Angle2Degree(button.endAngle));
             
             if (lineThreeFourths > buttonStartAngle && lineThreeFourths < buttonEndAngle) {
+                
                 WJLog(@"恭喜：%@", button.luckyDrawDataModel.descriptionStr);
                 @WJWeakObj(self);
-                SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"提示" andMessage:[NSString stringWithFormat:@"恭喜您获得%@", button.luckyDrawDataModel.descriptionStr]];
-                [alertView addButtonWithTitle:@"确定" type:SIAlertViewButtonTypeDefault handler:^(SIAlertView *alertView) {
+                FCAlertView *alert = [[FCAlertView alloc] init];
+                [alert showAlertWithTitle:@"提示" withSubtitle:[NSString stringWithFormat:@"恭喜您获得%@", button.luckyDrawDataModel.descriptionStr] withCustomImage:nil withDoneButtonTitle:nil andButtons:nil];
+                alert.hideDoneButton = YES;
+                alert.bounceAnimations = YES;
+                alert.colorScheme = alert.flatOrange;
+                [alert makeAlertTypeSuccess];
+                alert.subTitleColor = [UIColor redColor];
+                [alert addButton:@"取消" withActionBlock:nil];
+                [alert addButton:@"确定" withActionBlock:^{
 
                     // 通知代理
                     if ([selfWeak.deleagte respondsToSelector:@selector(luckyDraw:result:)]) {
@@ -141,37 +149,11 @@ NSString * const kHBLuckyDrawAnimationKey = @"kHBLuckyDrawAnimationKey";
                     // 刷新界面
                     [_dataSource removeObject:button.luckyDrawDataModel];
                     [selfWeak refreshUIWithDataSource:_dataSource];
+
                 }];
-                alertView.titleColor = [UIColor redColor];
-                alertView.messageColor = [UIColor orangeColor];
-                alertView.buttonColor = [UIColor blueColor];
-                alertView.transitionStyle = SIAlertViewTransitionStyleBounce;
-                [alertView show];
                 
                 break;
             }
-//            if (lineThreeFourths == buttonStartAngle || lineThreeFourths == buttonEndAngle) {
-//                SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"提示" andMessage:[NSString stringWithFormat:@"太牛了，转到边界了"]];
-//                [alertView addButtonWithTitle:@"再来一次" type:SIAlertViewButtonTypeCancel handler:nil];
-//                alertView.titleColor = [UIColor redColor];
-//                alertView.messageColor = [UIColor orangeColor];
-//                alertView.buttonColor = [UIColor blueColor];
-//                alertView.transitionStyle = SIAlertViewTransitionStyleBounce;
-//                [alertView show];
-//                
-//                break;
-//            }
-//            if (lineThreeFourths < buttonStartAngle && lineThreeFourths > buttonEndAngle) {
-//                SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"提示" andMessage:[NSString stringWithFormat:@"穿越了"]];
-//                [alertView addButtonWithTitle:@"确定" type:SIAlertViewButtonTypeCancel handler:nil];
-//                alertView.titleColor = [UIColor redColor];
-//                alertView.messageColor = [UIColor orangeColor];
-//                alertView.buttonColor = [UIColor blueColor];
-//                alertView.transitionStyle = SIAlertViewTransitionStyleBounce;
-//                [alertView show];
-//                
-//                break;
-//            }
         }
     }
 }
