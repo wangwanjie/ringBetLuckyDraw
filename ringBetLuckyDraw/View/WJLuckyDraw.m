@@ -85,9 +85,6 @@ NSString * const kHBLuckyDrawAnimationKey = @"kHBLuckyDrawAnimationKey";
     else {
         random = arc4random() % 10 + 20 + (double)arc4random() / 0x100000000;
         anim.duration = 8;
-        random = arc4random() % 10 + (double)arc4random() / 0x100000000;
-        anim.duration = 0.1;
-
     }
     anim.toValue = @(random * M_PI);
     _rotatedAngle = random * M_PI;
