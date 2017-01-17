@@ -54,6 +54,10 @@ NSInteger const kFourthAwardCount = 15;
     [self setupUI];
 }
 
+- (void)dealloc {
+    WJLog(@"抽奖界面挂了");
+}
+
 #pragma mark -
 #pragma mark layout
 - (void)setupUI {
@@ -85,11 +89,34 @@ NSInteger const kFourthAwardCount = 15;
     CGFloat W = self.view.width;
     CGFloat H = self.view.height;
     CGFloat margin = H * 0.00641;
-    _specialLeftCount.frame = CGRectMake(W * 0.8681, H * 0.1260, W * 0.046875, H * 0.03255);
-    _firstLeftCount.frame = (CGRect){{_specialLeftCount.left, _specialLeftCount.bottom + margin}, _specialLeftCount.size};
-    _secondLeftCount.frame = (CGRect){{_specialLeftCount.left, _firstLeftCount.bottom + margin}, _specialLeftCount.size};
-    _thirdLeftCount.frame = (CGRect){{_specialLeftCount.left, _secondLeftCount.bottom + margin}, _specialLeftCount.size};
-    _fourthLeftCount.frame = (CGRect){{_specialLeftCount.left, _thirdLeftCount.bottom + margin}, _specialLeftCount.size};
+    
+    UIView *associatedView = self.view;
+    
+    [_specialLeftCount mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(associatedView).offset(W * 0.8681);
+        make.top.equalTo(associatedView).offset(H * 0.1260);
+        make.size.equalTo(CGSizeMake(W * 0.046875, H * 0.03255));
+    }];
+    [_firstLeftCount mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.equalTo(_specialLeftCount);
+        make.left.equalTo(_specialLeftCount);
+        make.top.equalTo(_specialLeftCount.mas_bottom).offset(margin);
+    }];
+    [_secondLeftCount mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.equalTo(_specialLeftCount);
+        make.left.equalTo(_specialLeftCount);
+        make.top.equalTo(_firstLeftCount.mas_bottom).offset(margin);
+    }];
+    [_thirdLeftCount mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.equalTo(_specialLeftCount);
+        make.left.equalTo(_specialLeftCount);
+        make.top.equalTo(_secondLeftCount.mas_bottom).offset(margin);
+    }];
+    [_fourthLeftCount mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.equalTo(_specialLeftCount);
+        make.left.equalTo(_specialLeftCount);
+        make.top.equalTo(_thirdLeftCount.mas_bottom).offset(margin);
+    }];
 }
 
 #pragma mark -
